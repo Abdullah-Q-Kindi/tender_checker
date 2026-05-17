@@ -1,38 +1,65 @@
 [
   {
-    "serial": "10.",
-    "tender_number": "2026/1901/و ص/ م ر -131",
-    "title": "توثيق وتأطير الخدمات لنظام ا.....",
-    "entity": "وزارة الصحة",
-    "category": "خدمات تقنية المعلومات [الممتازة,الأولى,الثانية]",
-    "tender_type": "عامة  [ Local]",
+    "serial": "13.",
+    "tender_number": "1901/2026/MOH/HQ-131",
+    "title": "Documentation & Framing .....",
+    "entity": "Ministry of Health",
+    "category": "Information Technology Services [Excellent,First,Second]",
+    "tender_type": "Open  [ Local]",
     "date": "Sales EndDate:01-06-2026-Bid Closing Date:01-07-2026"
   },
   {
-    "serial": "21.",
-    "tender_number": "2026/190/و ت أ/د م -54- اعادة طرح - 1",
-    "title": "الصيانة والتدريب على الآلات .....",
-    "entity": "وزارة التنمية الاجتماعية",
-    "category": "خدمات تقنية المعلومات [الممتازة,الأولى,الثانية,الثالثة,الرابعة]",
-    "tender_type": "مؤسسات صغيرة و المتوسطة  [ Local]",
+    "serial": "17.",
+    "tender_number": "23/2026/NM/HQ-2",
+    "title": "BAG AL MADBAGHA PUBLIC SPACE",
+    "entity": "The National Museum",
+    "category": "Construction and Maintenance [Second,Third]",
+    "tender_type": "Open  [ Local]",
+    "date": "Sales EndDate:31-05-2026-Bid Closing Date:08-06-2026"
+  },
+  {
+    "serial": "19.",
+    "tender_number": "190/2026/MOSD/PRC-54- Recall - 1",
+    "title": "Maintenance and training on .....",
+    "entity": "Ministry of Social Development",
+    "category": "Information Technology Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "SME  [ Local]",
     "date": "Sales EndDate:21-05-2026-Bid Closing Date:28-05-2026"
   },
   {
-    "serial": "29.",
-    "tender_number": "2026/79/ب ظ/ م ر -51",
-    "title": "إدارة وتشغيل تطبيق مواسم ظفار",
-    "entity": "بلديه ظفار",
-    "category": "خدمات تقنية المعلومات [الممتازة,الأولى,الثانية,الثالثة,الرابعة]",
-    "tender_type": "عامة  [ Local]",
+    "serial": "21.",
+    "tender_number": "315/2026/MAFWR/DGAWRSN-18",
+    "title": "Maintenance of the Departmen.....",
+    "entity": "Ministry of Agricultural, Fisheries Wealth and Water Resources",
+    "category": "Construction and Maintenance [Third,Fourth]",
+    "tender_type": "SME  [ Local]",
+    "date": "Sales EndDate:31-05-2026-Bid Closing Date:01-06-2026"
+  },
+  {
+    "serial": "30.",
+    "tender_number": "79/2026/DM/HQ-51",
+    "title": "Management and operation of .....",
+    "entity": "Dhofar Municipality",
+    "category": "Information Technology Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "Open  [ Local]",
     "date": "Sales EndDate:24-05-2026-Bid Closing Date:31-05-2026"
   },
   {
+    "serial": "45.",
+    "tender_number": "311/2026/MAFWR/DGAFWRBS-24",
+    "title": "Rehabilitation and maintena.....",
+    "entity": "Ministry of Agricultural, Fisheries Wealth and Water Resources",
+    "category": "Construction and Maintenance [Third,Fourth]",
+    "tender_type": "Open  [ Local]",
+    "date": "Sales EndDate:20-05-2026-Bid Closing Date:28-05-2026"
+  },
+  {
     "serial": "47.",
-    "tender_number": "2026/6/م م ش ش/ب ش ش -5- اعادة طرح - 1",
-    "title": "تقديم الخدمات الاستشارية لضم.....",
-    "entity": "مكتب محافظ شمال الشرقية",
-    "category": "خدمات تقنية المعلومات [الأولى,الثانية]",
-    "tender_type": "عامة  [ Local]",
+    "tender_number": "6/2026/NSGO/NSM-5- Recall - 1",
+    "title": "Providing consulting service.....",
+    "entity": "North Al Sharqiyah Governor Office",
+    "category": "Information Technology Services [First,Second]",
+    "tender_type": "Open  [ Local]",
     "date": "Sales EndDate:25-05-2026-Bid Closing Date:11-06-2026"
   }
 ]
