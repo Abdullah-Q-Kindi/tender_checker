@@ -1,65 +1,177 @@
 [
   {
-    "serial": "13.",
-    "tender_number": "1901/2026/MOH/HQ-131",
-    "title": "Documentation & Framing .....",
-    "entity": "Ministry of Health",
-    "category": "Information Technology Services [Excellent,First,Second]",
-    "tender_type": "Open  [ Local]",
-    "date": "Sales EndDate:01-06-2026-Bid Closing Date:01-07-2026"
-  },
-  {
-    "serial": "17.",
-    "tender_number": "23/2026/NM/HQ-2",
-    "title": "BAG AL MADBAGHA PUBLIC SPACE",
-    "entity": "The National Museum",
-    "category": "Construction and Maintenance [Second,Third]",
-    "tender_type": "Open  [ Local]",
-    "date": "Sales EndDate:31-05-2026-Bid Closing Date:08-06-2026"
-  },
-  {
-    "serial": "19.",
-    "tender_number": "190/2026/MOSD/PRC-54- Recall - 1",
-    "title": "Maintenance and training on .....",
-    "entity": "Ministry of Social Development",
-    "category": "Information Technology Services [Excellent,First,Second,Third,Fourth]",
+    "title": "Digital transformation progr.....",
+    "entity": "Small and Medium Enterprises Development Authority",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
     "tender_type": "SME  [ Local]",
-    "date": "Sales EndDate:21-05-2026-Bid Closing Date:28-05-2026"
+    "date": "Sales EndDate:20-05-2026-Bid Closing Date:01-06-2026"
   },
   {
-    "serial": "21.",
-    "tender_number": "315/2026/MAFWR/DGAWRSN-18",
-    "title": "Maintenance of the Departmen.....",
-    "entity": "Ministry of Agricultural, Fisheries Wealth and Water Resources",
-    "category": "Construction and Maintenance [Third,Fourth]",
+    "title": "Advanced Data Analysis Progr.....",
+    "entity": "Small and Medium Enterprises Development Authority",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
     "tender_type": "SME  [ Local]",
-    "date": "Sales EndDate:31-05-2026-Bid Closing Date:01-06-2026"
+    "date": "Sales EndDate:21-05-2026-Bid Closing Date:01-06-2026"
   },
   {
-    "serial": "30.",
-    "tender_number": "79/2026/DM/HQ-51",
-    "title": "Management and operation of .....",
-    "entity": "Dhofar Municipality",
-    "category": "Information Technology Services [Excellent,First,Second,Third,Fourth]",
+    "title": "The training program for mak.....",
+    "entity": "Small and Medium Enterprises Development Authority",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "SME  [ Local]",
+    "date": "Sales EndDate:21-05-2026-Bid Closing Date:01-06-2026"
+  },
+  {
+    "title": "A training program in the ba.....",
+    "entity": "Small and Medium Enterprises Development Authority",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "SME  [ Local]",
+    "date": "Sales EndDate:18-05-2026-Bid Closing Date:25-05-2026"
+  },
+  {
+    "title": "Activities and support progr.....",
+    "entity": "Small and Medium Enterprises Development Authority",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
     "tender_type": "Open  [ Local]",
-    "date": "Sales EndDate:24-05-2026-Bid Closing Date:31-05-2026"
+    "date": "Sales EndDate:31-05-2026-Bid Closing Date:21-06-2026"
   },
   {
-    "serial": "45.",
-    "tender_number": "311/2026/MAFWR/DGAFWRBS-24",
-    "title": "Rehabilitation and maintena.....",
+    "title": "Preparing a training curricu.....",
+    "entity": "Small and Medium Enterprises Development Authority",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "SME  [ Local]",
+    "date": "Sales EndDate:14-05-2026-Bid Closing Date:21-05-2026"
+  },
+  {
+    "title": "Preparing a training curricu.....",
+    "entity": "Small and Medium Enterprises Development Authority",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "SME  [ Local]",
+    "date": "Sales EndDate:14-05-2026-Bid Closing Date:21-05-2026"
+  },
+  {
+    "title": "Preparing a training curricu.....",
+    "entity": "Small and Medium Enterprises Development Authority",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "SME  [ Local]",
+    "date": "Sales EndDate:14-05-2026-Bid Closing Date:21-05-2026"
+  },
+  {
+    "title": "Training programs in the fie.....",
+    "entity": "Small and Medium Enterprises Development Authority",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "Open  [ Local]",
+    "date": "Sales EndDate:26-05-2026-Bid Closing Date:15-06-2026"
+  },
+  {
+    "title": "Maintenance Contract for Agi.....",
     "entity": "Ministry of Agricultural, Fisheries Wealth and Water Resources",
-    "category": "Construction and Maintenance [Third,Fourth]",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
     "tender_type": "Open  [ Local]",
-    "date": "Sales EndDate:20-05-2026-Bid Closing Date:28-05-2026"
+    "date": "Sales EndDate:11-05-2026-Bid Closing Date:14-05-2026"
   },
   {
-    "serial": "47.",
-    "tender_number": "6/2026/NSGO/NSM-5- Recall - 1",
-    "title": "Providing consulting service.....",
-    "entity": "North Al Sharqiyah Governor Office",
-    "category": "Information Technology Services [First,Second]",
+    "title": "Summer training program for .....",
+    "entity": "Small and Medium Enterprises Development Authority",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "SME  [ Local]",
+    "date": "Sales EndDate:13-05-2026-Bid Closing Date:20-05-2026"
+  },
+  {
+    "title": "Grape Processing Units Proje.....",
+    "entity": "Ministry of Agricultural, Fisheries Wealth and Water Resources",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "SME  [ Local]",
+    "date": "Sales EndDate:06-05-2026-Bid Closing Date:17-05-2026"
+  },
+  {
+    "title": "Design, Development, and Del.....",
+    "entity": "Royal Academy of Management",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "International  [ International]",
+    "date": "Sales EndDate:04-05-2026-Bid Closing Date:01-06-2026"
+  },
+  {
+    "title": "Operation and Maintenance fo.....",
+    "entity": "Oman Environmental Services Holding Company (S.A.O.C)",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "International  [ International]",
+    "date": "Sales EndDate:11-02-2026-Bid Closing Date:01-06-2026"
+  },
+  {
+    "title": "Organization Development Cer.....",
+    "entity": "Oman Vision 2040 Implementation Follow Up Unit",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
     "tender_type": "Open  [ Local]",
-    "date": "Sales EndDate:25-05-2026-Bid Closing Date:11-06-2026"
+    "date": "Sales EndDate:30-09-2025-Bid Closing Date:06-10-2025"
+  },
+  {
+    "title": "A training course to obtain .....",
+    "entity": "Oman Vision 2040 Implementation Follow Up Unit",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "SME  [ Local]",
+    "date": "Sales EndDate:29-05-2025-Bid Closing Date:01-06-2025"
+  },
+  {
+    "title": "Implementing a training prog.....",
+    "entity": "Small and Medium Enterprises Development Authority",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "SME  [ Local]",
+    "date": "Sales EndDate:16-04-2025-Bid Closing Date:23-04-2025"
+  },
+  {
+    "title": "A training program on how to.....",
+    "entity": "Small and Medium Enterprises Development Authority",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "Open  [ Local]",
+    "date": "Sales EndDate:30-05-2024-Bid Closing Date:22-07-2024"
+  },
+  {
+    "title": "Implementation of a training.....",
+    "entity": "Small and Medium Enterprises Development Authority",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "SME  [ Local]",
+    "date": "Sales EndDate:01-10-2023-Bid Closing Date:03-10-2023"
+  },
+  {
+    "title": "Implementation of a training.....",
+    "entity": "Small and Medium Enterprises Development Authority",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "SME  [ Local]",
+    "date": "Sales EndDate:11-06-2023-Bid Closing Date:13-06-2023"
+  },
+  {
+    "title": "Implementation of a training.....",
+    "entity": "Small and Medium Enterprises Development Authority",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "SME  [ Local]",
+    "date": "Sales EndDate:22-05-2023-Bid Closing Date:24-05-2023"
+  },
+  {
+    "title": "Implementation of a training.....",
+    "entity": "Small and Medium Enterprises Development Authority",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "SME  [ Local]",
+    "date": "Sales EndDate:22-05-2023-Bid Closing Date:24-05-2023"
+  },
+  {
+    "title": "Implementation of a training.....",
+    "entity": "Small and Medium Enterprises Development Authority",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "SME  [ Local]",
+    "date": "Sales EndDate:21-05-2023-Bid Closing Date:23-05-2023"
+  },
+  {
+    "title": "Implementation of a training.....",
+    "entity": "Small and Medium Enterprises Development Authority",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "SME  [ Local]",
+    "date": "Sales EndDate:20-05-2023-Bid Closing Date:22-05-2023"
+  },
+  {
+    "title": "Implementation of a training.....",
+    "entity": "Small and Medium Enterprises Development Authority",
+    "category": "Services [Excellent,First,Second,Third,Fourth]",
+    "tender_type": "SME  [ Local]",
+    "date": "Sales EndDate:20-05-2023-Bid Closing Date:22-05-2023"
   }
 ]
