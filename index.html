@@ -22,7 +22,7 @@
     }
     main {
       margin: 2rem auto;
-      max-width: 1100px;
+      max-width: 900px;
       background: #fff;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.09);
@@ -37,6 +37,7 @@
       text-align: left;
       padding: 0.75rem 1rem;
       border-bottom: 1px solid #eee;
+      vertical-align: top;
     }
     th {
       background: #e9eff7;
@@ -44,6 +45,11 @@
     }
     tr:last-child td {
       border-bottom: none;
+    }
+    .title-col {
+      min-width: 250px;
+      max-width: 480px;
+      word-break: break-word;
     }
     .no-data, .loading-msg {
       text-align: center;
@@ -73,6 +79,10 @@
         color: #294A70;
         margin-bottom: 0.25em;
       }
+      .title-col {
+        min-width: unset;
+        max-width: unset;
+      }
     }
   </style>
 </head>
@@ -86,9 +96,7 @@
     <table id="tenders-table">
       <thead>
         <tr>
-          <th>Serial</th>
-          <th>Tender Number</th>
-          <th>Title</th>
+          <th class="title-col">Title</th>
           <th>Entity</th>
           <th>Category</th>
           <th>Tender Type</th>
@@ -97,13 +105,47 @@
       </thead>
       <tbody id="tenders-tbody">
         <tr>
-          <td colspan="7" class="loading-msg">Loading...</td>
+          <td colspan="5" class="loading-msg">Loading...</td>
         </tr>
       </tbody>
     </table>
   </main>
   <script>
     const tbody = document.getElementById('tenders-tbody');
+    // Regex to remove category brackets (e.g., "Info [A,B]") -> "Info"
+    const categoryCleanupRegex = /\s*\[.*?\]/;
+
+    // Split the date field on pipe or dash
+    function formatDateField(dateField) {
+      // Try standard Tender Board format: "Sales End: 2024-07-19 12:00 AM | Bid Closing: 2024-07-22 10:00 AM"
+      let salesEnd = "", bidClose = "";
+      // Primary try: extract fields using keywords
+      let salesEndMatch = dateField.match(/Sales\s*End\s*:? ([^\|\-]+)/i);
+      let bidCloseMatch = dateField.match(/Bid\s*Closing\s*:? ([^\|\-]+)/i);
+      if (salesEndMatch) salesEnd = salesEndMatch[1].trim();
+      if (bidCloseMatch) bidClose = bidCloseMatch[1].trim();
+      // Fallback if | present or comma-dash delimited
+      if (!salesEnd && !bidClose) {
+        let split = dateField.split('|');
+        if (split.length === 2) {
+          salesEnd = split[0].trim();
+          bidClose = split[1].trim();
+        } else {
+          split = dateField.split('-');
+          if (split.length === 2) {
+            salesEnd = split[0].trim();
+            bidClose = split[1].trim();
+          }
+        }
+      }
+      // Format output
+      let lines = [];
+      if (salesEnd) lines.push("Sales End Date: " + salesEnd);
+      if (bidClose) lines.push("Bid Closing Date: " + bidClose);
+      if (lines.length === 0) lines.push(dateField);
+      return lines.join('<br>');
+    }
+
     fetch('tenders.json')
       .then(response => {
         if (!response.ok) throw new Error('Could not load tenders.json');
@@ -112,25 +154,27 @@
       .then((data) => {
         tbody.innerHTML = '';
         if (!Array.isArray(data) || data.length === 0) {
-          tbody.innerHTML = `<tr><td colspan="7" class="no-data">No matching tenders found.</td></tr>`;
+          tbody.innerHTML = `<tr><td colspan="5" class="no-data">No matching tenders found.</td></tr>`;
           return;
         }
         data.forEach(tender => {
           const row = document.createElement('tr');
+          // Remove brackets from category
+          const cleanCategory = (tender.category || '').replace(categoryCleanupRegex, '');
+          // Format the date field
+          const formattedDate = formatDateField(tender.date || '');
           row.innerHTML = `
-            <td>${tender.serial || ''}</td>
-            <td>${tender.tender_number || ''}</td>
-            <td>${tender.title || ''}</td>
+            <td class="title-col">${tender.title || ''}</td>
             <td>${tender.entity || ''}</td>
-            <td>${tender.category || ''}</td>
+            <td>${cleanCategory}</td>
             <td>${tender.tender_type || ''}</td>
-            <td>${tender.date || ''}</td>
+            <td>${formattedDate}</td>
           `;
           tbody.appendChild(row);
         });
       })
       .catch(() => {
-        tbody.innerHTML = `<tr><td colspan="7" class="no-data">No matching tenders found.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="5" class="no-data">No matching tenders found.</td></tr>`;
       });
   </script>
 </body>
