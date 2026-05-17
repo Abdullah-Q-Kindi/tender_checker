@@ -22,7 +22,7 @@
     }
     main {
       margin: 2rem auto;
-      max-width: 900px;
+      max-width: 1100px;
       background: #fff;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.09);
@@ -45,7 +45,7 @@
     tr:last-child td {
       border-bottom: none;
     }
-    .no-data {
+    .no-data, .loading-msg {
       text-align: center;
       color: #8a8e97;
       padding: 2rem;
@@ -86,21 +86,52 @@
     <table id="tenders-table">
       <thead>
         <tr>
-          <th>Tender Title</th>
+          <th>Serial</th>
+          <th>Tender Number</th>
+          <th>Title</th>
           <th>Entity</th>
-          <th>Bid Submission Date</th>
-          <th>Closing Date</th>
+          <th>Category</th>
+          <th>Tender Type</th>
+          <th>Date</th>
         </tr>
       </thead>
       <tbody id="tenders-tbody">
         <tr>
-          <td colspan="4" class="no-data">No tenders to display.</td>
+          <td colspan="7" class="loading-msg">Loading...</td>
         </tr>
       </tbody>
     </table>
   </main>
   <script>
-    // Data fetching & filtering logic will go here in later steps
+    const tbody = document.getElementById('tenders-tbody');
+    fetch('tenders.json')
+      .then(response => {
+        if (!response.ok) throw new Error('Could not load tenders.json');
+        return response.json();
+      })
+      .then((data) => {
+        tbody.innerHTML = '';
+        if (!Array.isArray(data) || data.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="7" class="no-data">No matching tenders found.</td></tr>`;
+          return;
+        }
+        data.forEach(tender => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${tender.serial || ''}</td>
+            <td>${tender.tender_number || ''}</td>
+            <td>${tender.title || ''}</td>
+            <td>${tender.entity || ''}</td>
+            <td>${tender.category || ''}</td>
+            <td>${tender.tender_type || ''}</td>
+            <td>${tender.date || ''}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      })
+      .catch(() => {
+        tbody.innerHTML = `<tr><td colspan="7" class="no-data">No matching tenders found.</td></tr>`;
+      });
   </script>
 </body>
 </html>
