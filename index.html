@@ -2,172 +2,324 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Oman Tender Board IT Training Dashboard</title>
+  <title>IT Training Tenders - Oman Tender Board</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: "Segoe UI", Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f6f8fa;
+      background: #DEF2FF;
       color: #222;
+      min-height: 100vh;
     }
+
     header {
-      background: #294A70;
+      background: #126BA7;
       color: #fff;
-      padding: 1rem 2rem;
-      text-align: center;
-      font-size: 2rem;
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(18,107,167,0.15);
+    }
+
+    header .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    header .logo-text {
+      font-size: 1.6rem;
+      font-weight: 800;
       letter-spacing: 1px;
     }
-    main {
-      margin: 2rem auto;
-      max-width: 1200px;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.09);
-      padding: 2rem;
+
+    header .logo-text span {
+      color: #FB5C0B;
     }
+
+    header .tagline {
+      font-size: 0.8rem;
+      opacity: 0.85;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 0.2rem;
+    }
+
+    header .header-right {
+      text-align: right;
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.2rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .top-bar h2 {
+      font-size: 1.2rem;
+      color: #126BA7;
+      font-weight: 700;
+    }
+
+    .meta {
+      font-size: 0.88rem;
+      color: #555;
+      background: #fff;
+      border-left: 4px solid #FB5C0B;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+
+    .meta strong { color: #126BA7; }
+
     table {
       width: 100%;
-      border-collapse: collapse;
-      margin-top: 1rem;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(18,107,167,0.1);
     }
-    th, td {
+
+    thead tr {
+      background: #126BA7;
+    }
+
+    th {
+      color: #fff;
+      padding: 1rem 1.4rem;
       text-align: left;
-      padding: 0.75rem 1rem;
-      border-bottom: 1px solid #eee;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+
+    td {
+      padding: 1.1rem 1.4rem;
+      border-bottom: 1px solid #e8f4fd;
       vertical-align: top;
-      white-space: normal;
       word-wrap: break-word;
       overflow-wrap: break-word;
+      white-space: normal;
+      font-size: 0.95rem;
     }
-    th {
-      background: #e9eff7;
-      font-weight: 600;
+
+    tbody tr:last-child td { border-bottom: none; }
+
+    tbody tr:hover td {
+      background: #f0f8ff;
     }
-    tr:last-child td {
-      border-bottom: none;
-    }
-    tr:hover {
-      background: #f0f4fa;
-    }
-    .title-col {
-      width: 35%;
-    }
-    .title-col a {
-      font-weight: 600;
-      font-size: 1.02em;
-      color: #294A70;
+
+    .col-title { width: 50%; }
+    .col-entity { width: 28%; }
+    .col-dates { width: 22%; }
+
+    .tender-link {
+      color: #126BA7;
       text-decoration: none;
+      font-weight: 600;
+      line-height: 1.6;
+      display: block;
     }
-    .title-col a:hover {
+
+    .tender-link:hover {
+      color: #FB5C0B;
       text-decoration: underline;
     }
-    .date-col {
-      width: 18%;
-      font-size: 0.92em;
-      line-height: 1.7;
+
+    .entity-name {
+      color: #444;
+      line-height: 1.5;
     }
-    .closing-soon {
-      color: #c0392b;
-      font-weight: bold;
+
+    .date-block {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
-    .no-data, .loading-msg {
-      text-align: center;
-      color: #8a8e97;
-      padding: 2rem;
-      font-style: italic;
+
+    .date-item {
+      display: flex;
+      flex-direction: column;
     }
-    .count-label {
-      color: #294A70;
+
+    .date-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #126BA7;
+    }
+
+    .date-value {
       font-weight: 600;
+      font-size: 0.95rem;
+      color: #222;
     }
+
+    .closing-soon .date-value {
+      color: #FB5C0B;
+    }
+
+    .closing-tag {
+      margin-top: 0.4rem;
+      font-size: 0.75rem;
+      color: #FB5C0B;
+      font-weight: 700;
+      background: #fff3ee;
+      border: 1px solid #FB5C0B;
+      border-radius: 4px;
+      padding: 0.15rem 0.5rem;
+      display: inline-block;
+    }
+
+    .msg {
+      text-align: center;
+      padding: 4rem;
+      color: #999;
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+    .pill {
+      display: inline-block;
+      background: #FB5C0B;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 1rem;
+    }
+
+    footer span { color: #FB5C0B; font-weight: 600; }
   </style>
 </head>
 <body>
+
   <header>
-    🖥️ Oman Tender Board - IT Training & Tech Tenders Dashboard
+    <div class="brand">
+      <div>
+        <div class="logo-text">CO<span>{}</span>ELINE</div>
+        <div class="tagline">Serious Coding Bootcamps</div>
+      </div>
+    </div>
+    <div class="header-right">
+      🖥️ Oman Tender Board Monitor<br>
+      IT & Technology Training Tenders
+    </div>
   </header>
-  <main>
-    <h2 style="margin-bottom: 0;">Monitored Tenders</h2>
-    <p style="color:#666; margin:.25em 0 1.5em;">
-      Showing active IT and technology training tenders from the Oman Tender Board.
-      <span id="tender-count" class="count-label"></span>
-    </p>
-    <table id="tenders-table">
+
+  <div class="container">
+    <div class="top-bar">
+      <h2>Active IT Training Tenders <span class="pill" id="count">...</span></h2>
+      <div class="meta" id="meta">Loading tenders...</div>
+    </div>
+
+    <table>
       <thead>
         <tr>
-          <th class="title-col">Title</th>
-          <th>Entity</th>
-          <th>Tender Type</th>
-          <th class="date-col">Dates</th>
+          <th class="col-title">Tender Title</th>
+          <th class="col-entity">Entity</th>
+          <th class="col-dates">Dates</th>
         </tr>
       </thead>
-      <tbody id="tenders-tbody">
-        <tr>
-          <td colspan="4" class="loading-msg">Loading...</td>
-        </tr>
+      <tbody id="tbody">
+        <tr><td colspan="3" class="msg">Loading...</td></tr>
       </tbody>
     </table>
-  </main>
+  </div>
+
+  <footer>
+    Powered by <span>Codeline</span> — Data sourced from Oman Tender Board
+  </footer>
+
   <script>
-    const tbody = document.getElementById('tenders-tbody');
-    const countLabel = document.getElementById('tender-count');
-
-    function formatDate(dateStr) {
-      let salesEnd = "";
-      let bidClose = "";
-      const salesMatch = dateStr.match(/Sales EndDate:([^-B]+)/);
-      const bidMatch = dateStr.match(/Bid Closing Date:(.+)/);
-      if (salesMatch) salesEnd = "📅 Sales End: " + salesMatch[1].trim();
-      if (bidMatch) bidClose = "⏰ Bid Close: " + bidMatch[1].trim();
-      return [salesEnd, bidClose].filter(Boolean).join("<br>");
+    function isClosingSoon(bidClose) {
+      if (!bidClose) return false;
+      const p = bidClose.split("-");
+      const d = new Date(p[2], p[1] - 1, p[0]);
+      const today = new Date();
+      today.setHours(0,0,0,0);
+      return (d - today) / 86400000 <= 7;
     }
 
-    function isClosingSoon(dateStr) {
-      try {
-        const bidMatch = dateStr.match(/Bid Closing Date:(.+)/);
-        if (!bidMatch) return false;
-        const parts = bidMatch[1].trim().split("-");
-        const bidDate = new Date(parts[2], parts[1] - 1, parts[0]);
-        const today = new Date();
-        today.setHours(0,0,0,0);
-        const diff = (bidDate - today) / (1000 * 60 * 60 * 24);
-        return diff <= 7;
-      } catch { return false; }
-    }
-
-    fetch('tenders.json')
-      .then(r => {
-        if (!r.ok) throw new Error('Failed');
-        return r.json();
-      })
+    fetch('tenders.json?v=' + Date.now())
+      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
       .then(data => {
+        const tbody = document.getElementById('tbody');
+        const meta = document.getElementById('meta');
+        const countEl = document.getElementById('count');
         tbody.innerHTML = '';
-        if (!Array.isArray(data) || data.length === 0) {
-          tbody.innerHTML = '<tr><td colspan="4" class="no-data">No active tenders found.</td></tr>';
+
+        if (!data.length) {
+          tbody.innerHTML = '<tr><td colspan="3" class="msg">No active IT training tenders found.</td></tr>';
+          meta.textContent = 'No tenders found.';
+          countEl.textContent = '0';
           return;
         }
-        countLabel.textContent = '— ' + data.length + ' active tenders found';
+
+        const today = new Date().toLocaleDateString('en-GB');
+        countEl.textContent = data.length;
+        meta.innerHTML = `Last updated: <strong>${today}</strong> &nbsp;|&nbsp; Source: Oman Tender Board`;
+
         data.forEach(t => {
-          const row = document.createElement('tr');
-          const soon = isClosingSoon(t.date || '');
-          const titleCell = t.link
-            ? `<a href="${t.link}" target="_blank">${t.title || ''}</a>`
-            : t.title || '';
-          row.innerHTML = `
-            <td class="title-col">${titleCell}</td>
-            <td>${t.entity || ''}</td>
-            <td>${t.tender_type || ''}</td>
-            <td class="date-col ${soon ? 'closing-soon' : ''}">${formatDate(t.date || '')}</td>
+          const soon = isClosingSoon(t.bid_close_date);
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td class="col-title">
+              <a class="tender-link" href="${t.link}" target="_blank">${t.title}</a>
+            </td>
+            <td class="col-entity">
+              <span class="entity-name">${t.entity}</span>
+            </td>
+            <td class="col-dates ${soon ? 'closing-soon' : ''}">
+              <div class="date-block">
+                <div class="date-item">
+                  <span class="date-label">Sales End</span>
+                  <span class="date-value">${t.sales_date || 'N/A'}</span>
+                </div>
+                <div class="date-item">
+                  <span class="date-label">Bid Close</span>
+                  <span class="date-value">${t.bid_close_date || 'N/A'}</span>
+                </div>
+                ${soon ? '<span class="closing-tag">⚠️ Closing within 7 days</span>' : ''}
+              </div>
+            </td>
           `;
-          tbody.appendChild(row);
+          tbody.appendChild(tr);
         });
       })
       .catch(() => {
-        tbody.innerHTML = '<tr><td colspan="4" class="no-data">No active tenders found.</td></tr>';
+        document.getElementById('tbody').innerHTML = '<tr><td colspan="3" class="msg">Could not load tenders.</td></tr>';
+        document.getElementById('meta').textContent = 'Error loading data.';
       });
   </script>
+
 </body>
 </html>
