@@ -22,7 +22,7 @@
     }
     main {
       margin: 2rem auto;
-      max-width: 900px;
+      max-width: 1200px;
       background: #fff;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.09);
@@ -38,6 +38,9 @@
       padding: 0.75rem 1rem;
       border-bottom: 1px solid #eee;
       vertical-align: top;
+      white-space: normal;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
     th {
       background: #e9eff7;
@@ -46,10 +49,29 @@
     tr:last-child td {
       border-bottom: none;
     }
+    tr:hover {
+      background: #f0f4fa;
+    }
     .title-col {
-      min-width: 250px;
-      max-width: 480px;
-      word-break: break-word;
+      width: 35%;
+    }
+    .title-col a {
+      font-weight: 600;
+      font-size: 1.02em;
+      color: #294A70;
+      text-decoration: none;
+    }
+    .title-col a:hover {
+      text-decoration: underline;
+    }
+    .date-col {
+      width: 18%;
+      font-size: 0.92em;
+      line-height: 1.7;
+    }
+    .closing-soon {
+      color: #c0392b;
+      font-weight: bold;
     }
     .no-data, .loading-msg {
       text-align: center;
@@ -57,32 +79,9 @@
       padding: 2rem;
       font-style: italic;
     }
-    @media (max-width: 600px) {
-      main {
-        padding: 1rem;
-      }
-      table, thead, tbody, th, td, tr {
-        display: block;
-      }
-      th {
-        position: sticky;
-        top: 0;
-        background: #e9eff7;
-      }
-      td {
-        border-bottom: 1px solid #eee;
-      }
-      td:before {
-        content: attr(data-label);
-        display: block;
-        font-weight: bold;
-        color: #294A70;
-        margin-bottom: 0.25em;
-      }
-      .title-col {
-        min-width: unset;
-        max-width: unset;
-      }
+    .count-label {
+      color: #294A70;
+      font-weight: 600;
     }
   </style>
 </head>
@@ -92,89 +91,82 @@
   </header>
   <main>
     <h2 style="margin-bottom: 0;">Monitored Tenders</h2>
-    <p style="color:#666; margin:.25em 0 1.5em;">Automatically updates with IT training, software development, and technology bids.</p>
+    <p style="color:#666; margin:.25em 0 1.5em;">
+      Showing active IT and technology training tenders from the Oman Tender Board.
+      <span id="tender-count" class="count-label"></span>
+    </p>
     <table id="tenders-table">
       <thead>
         <tr>
           <th class="title-col">Title</th>
           <th>Entity</th>
-          <th>Category</th>
           <th>Tender Type</th>
-          <th>Date</th>
+          <th class="date-col">Dates</th>
         </tr>
       </thead>
       <tbody id="tenders-tbody">
         <tr>
-          <td colspan="5" class="loading-msg">Loading...</td>
+          <td colspan="4" class="loading-msg">Loading...</td>
         </tr>
       </tbody>
     </table>
   </main>
   <script>
     const tbody = document.getElementById('tenders-tbody');
-    // Regex to remove category brackets (e.g., "Info [A,B]") -> "Info"
-    const categoryCleanupRegex = /\s*\[.*?\]/;
+    const countLabel = document.getElementById('tender-count');
 
-    // Split the date field on pipe or dash
-    function formatDateField(dateField) {
-      // Try standard Tender Board format: "Sales End: 2024-07-19 12:00 AM | Bid Closing: 2024-07-22 10:00 AM"
-      let salesEnd = "", bidClose = "";
-      // Primary try: extract fields using keywords
-      let salesEndMatch = dateField.match(/Sales\s*End\s*:? ([^\|\-]+)/i);
-      let bidCloseMatch = dateField.match(/Bid\s*Closing\s*:? ([^\|\-]+)/i);
-      if (salesEndMatch) salesEnd = salesEndMatch[1].trim();
-      if (bidCloseMatch) bidClose = bidCloseMatch[1].trim();
-      // Fallback if | present or comma-dash delimited
-      if (!salesEnd && !bidClose) {
-        let split = dateField.split('|');
-        if (split.length === 2) {
-          salesEnd = split[0].trim();
-          bidClose = split[1].trim();
-        } else {
-          split = dateField.split('-');
-          if (split.length === 2) {
-            salesEnd = split[0].trim();
-            bidClose = split[1].trim();
-          }
-        }
-      }
-      // Format output
-      let lines = [];
-      if (salesEnd) lines.push("Sales End Date: " + salesEnd);
-      if (bidClose) lines.push("Bid Closing Date: " + bidClose);
-      if (lines.length === 0) lines.push(dateField);
-      return lines.join('<br>');
+    function formatDate(dateStr) {
+      let salesEnd = "";
+      let bidClose = "";
+      const salesMatch = dateStr.match(/Sales EndDate:([^-B]+)/);
+      const bidMatch = dateStr.match(/Bid Closing Date:(.+)/);
+      if (salesMatch) salesEnd = "📅 Sales End: " + salesMatch[1].trim();
+      if (bidMatch) bidClose = "⏰ Bid Close: " + bidMatch[1].trim();
+      return [salesEnd, bidClose].filter(Boolean).join("<br>");
+    }
+
+    function isClosingSoon(dateStr) {
+      try {
+        const bidMatch = dateStr.match(/Bid Closing Date:(.+)/);
+        if (!bidMatch) return false;
+        const parts = bidMatch[1].trim().split("-");
+        const bidDate = new Date(parts[2], parts[1] - 1, parts[0]);
+        const today = new Date();
+        today.setHours(0,0,0,0);
+        const diff = (bidDate - today) / (1000 * 60 * 60 * 24);
+        return diff <= 7;
+      } catch { return false; }
     }
 
     fetch('tenders.json')
-      .then(response => {
-        if (!response.ok) throw new Error('Could not load tenders.json');
-        return response.json();
+      .then(r => {
+        if (!r.ok) throw new Error('Failed');
+        return r.json();
       })
-      .then((data) => {
+      .then(data => {
         tbody.innerHTML = '';
         if (!Array.isArray(data) || data.length === 0) {
-          tbody.innerHTML = `<tr><td colspan="5" class="no-data">No matching tenders found.</td></tr>`;
+          tbody.innerHTML = '<tr><td colspan="4" class="no-data">No active tenders found.</td></tr>';
           return;
         }
-        data.forEach(tender => {
+        countLabel.textContent = '— ' + data.length + ' active tenders found';
+        data.forEach(t => {
           const row = document.createElement('tr');
-          // Remove brackets from category
-          const cleanCategory = (tender.category || '').replace(categoryCleanupRegex, '');
-          // Format the date field
-          const formattedDate = formatDateField(tender.date || '');
+          const soon = isClosingSoon(t.date || '');
+          const titleCell = t.link
+            ? `<a href="${t.link}" target="_blank">${t.title || ''}</a>`
+            : t.title || '';
           row.innerHTML = `
-            <td class="title-col">${tender.title || ''}</td>
-            <td>${tender.entity || ''}</td>
-            <td>${cleanCategory}</td>
-            <td>${tender.tender_type || ''}</td>
-            <td>${formattedDate}</td>
+            <td class="title-col">${titleCell}</td>
+            <td>${t.entity || ''}</td>
+            <td>${t.tender_type || ''}</td>
+            <td class="date-col ${soon ? 'closing-soon' : ''}">${formatDate(t.date || '')}</td>
           `;
           tbody.appendChild(row);
         });
       })
       .catch(() => {
-        tbody.innerHTML = `<tr><td colspan="5" class="no-data">No matching tenders found.</td></tr>`;
+        tbody.innerHTML = '<tr><td colspan="4" class="no-data">No active tenders found.</td></tr>';
       });
   </script>
 </body>
